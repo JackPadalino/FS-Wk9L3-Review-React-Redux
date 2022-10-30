@@ -1,11 +1,36 @@
 import React from 'react';
-/* 
-    This is you entry point for your routes
-*/
+import { Link, Routes, Route } from 'react-router-dom';
+import {
+    GenresPage,
+    HomePage,
+    MoviesPage
+} from './';
+import { Button } from '@mui/material';
+import SingleMoviePage from './SingleMoviePage';
+
+/**
+ * This is the entry point for all of our react stuff
+ */
 const App = () => {
     return (
         <div>
-            <h1>Hello World</h1>
+            <Link to={'/'}>
+                <Button variant="contained">Home</Button>
+            </Link>
+            <Link to={'/movies'}>
+                <Button variant="contained">Movies</Button>
+            </Link>
+            <Link to={'/genres'}>
+                <Button variant="contained">Genres</Button>
+            </Link>
+
+            <Routes>
+                <Route path="/genres" element={<GenresPage />} />
+                <Route path="/movies" element={<MoviesPage />} />
+                {/* http://localhost:3000/movies/1 */}
+                <Route path="/movies/:movieId" element={<SingleMoviePage />} />
+                <Route path="/" element={<HomePage />} />
+            </Routes>
         </div>
     );
 };
